@@ -1,20 +1,17 @@
-# import lilypad
-
-from .MusicPracticeGenerator  import write_random_chords
-
-import random
-
-
-# example_output = 
-random.seed(1)
-
-write_random_chords()
-test_reader = open('output/sample_rythms.ly')
-# test_output = 
+import pandas as pd
+import music_practice_generator
 
 def test_rhythm_output():
-    assert True
-# assert test_output == example_output
+    assert isinstance(music_practice_generator.generate_sample_rhythms(), str)
 
+def test_tune_selection():
+    df = pd.DataFrame(data = {'Title': ['Test Tune Name']})
+    assert isinstance(music_practice_generator.select_random_tune(df), str)
+    
+def test_chord_generater():
+    assert isinstance(music_practice_generator.generate_random_chords(), str)
 
-pass
+if __name__ == '__main__':
+    test_rhythm_output()
+    test_tune_selection()
+    test_chord_generater()

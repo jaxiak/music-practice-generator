@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "MusicPracticeGenerator"
+name = "music_practice_generator"
 version = "0.0.1"
 authors = [
   { name="Joseph Axiak", email="jaxiak@gmail.com" },
@@ -16,7 +16,7 @@ classifiers = [
     "License :: GNU GPLv3",
     "Operating System :: OS Independent",
 ]
-dependencies = [
+dependencies = ["pandas"
 ]
 [tool.setuptools]
-py-modules = []
+py-modules = ["music_practice_generator"]

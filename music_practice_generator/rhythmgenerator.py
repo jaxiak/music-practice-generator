@@ -1,13 +1,4 @@
 from random import shuffle
-f = open("sample_rythms.ly", 'w')
-log = open("sample_log.txt", 'w')
-f.write("{\n")
-f.write("\t\\time 4/4\n")
-f.write("\t\\clef percussion\n")
-encoding = {'r': 'r', 'b': 'g', 's': 'd\''}
-rand_enc = ['r', 'b', 's']
-checked = set()
-encoded_measure = 'rrrrrrrr'
 
 def incremented(enc):
     new_enc = ''
@@ -33,6 +24,8 @@ def incremented(enc):
 def decode_measure(enc):
     measure = "\t"
     i = 0
+    
+    encoding = {'r': 'r', 'b': 'g', 's': 'd\''}
     while i < 8:
         #this_measure += str(i)
         measure += encoding[enc[i]]
@@ -60,22 +53,35 @@ def check_measure(enc):
             return False
     return True
 
-list_of_encodes = []
-for i in range(100000):
-    if encoded_measure in checked:
-        break
-    checked.add(encoded_measure)
-    if check_measure(encoded_measure):
-        list_of_encodes.append(encoded_measure)
-        log.write(encoded_measure)
-        log.write("\n")
-    encoded_measure = incremented(encoded_measure)
-shuffle(list_of_encodes)
-print(len(list_of_encodes))
-for i in range(500):
-    f.write("\t")
-    f.write(decode_measure(list_of_encodes[i]))
-    f.write("\n")
-f.write("}\n")
-log.close()
-f.close()
+def generate_sample_rhythms(n = 500):
+    list_of_encodes = []
+    rhythms_string = ''
+    
+    rhythms_string += "{\n"
+    rhythms_string += "\t\\time 4/4\n"
+    rhythms_string += "\t\\clef percussion\n"
+    
+    checked = set()
+    encoded_measure = 'rrrrrrrr'
+    for i in range(100000):
+        if encoded_measure in checked:
+            break
+        checked.add(encoded_measure)
+        if check_measure(encoded_measure):
+            list_of_encodes.append(encoded_measure)
+        encoded_measure = incremented(encoded_measure)
+    shuffle(list_of_encodes)
+
+    for i in range(min(n, len(list_of_encodes))):
+        rhythms_string += "\t"
+        rhythms_string += decode_measure(list_of_encodes[i])
+        rhythms_string += "\n"
+    
+    rhythms_string += "}\n"
+    return rhythms_string
+
+if __name__ == '__main__':
+    sample_rhythms_string = generate_sample_rhythms()
+    f = open("sample_rythms.ly", 'w')
+    f.write(sample_rhythms_string)
+    f.close()

@@ -1,45 +1,47 @@
 import random
 
-def write_random_chords(n=12, m= 4, delay = 10):
+def generate_random_chords(n=12, m= 4, delay = 10):
     notes = ['c', 'c', 'cis', 'des', 'd', 'd', 'dis', 'ees', 'e', 'e', 'eis', 'f', 'f', 'fis', 'ges', 'g', 'g', 'gis', 'aes', 'a', 'a', 'ais', 'bes', 'b', 'b']
     qualities = ['dim7', '7.9-']
     # f = open('/output/random_chords.ly','w')
-    f = open('random_chords.ly','w')
-    f.write('\\score {\n')
-    f.write('\t<<')
-    f.write('\t\\new ChordNames {\n')
-    f.write('\t\t\\chordmode {\n')
+    chords_string = ''
+    chords_string += '\\score {\n'
+    chords_string += '\t<<'
+    chords_string += '\t\\new ChordNames {\n'
+    chords_string += '\t\t\\chordmode {\n'
 
     for i in range(n):
-        f.write('\t\t\t')
+        chords_string += '\t\t\t'
         for ii in range(m): 
             for iii in range(4):
-                f.write(random.choice(notes) + ':' + random.choice(qualities) + ' ')
-            f.write(' | ')
-        f.write('\\break')
-        f.write('\n')
+                chords_string += random.choice(notes) + ':' + random.choice(qualities) + ' '
+            chords_string += ' | '
+        chords_string += '\\break'
+        chords_string += '\n'
 
-    f.write('\t\t}\n')
-    f.write('\t}\n')
-    f.write('\t\\new RhythmicStaff {\n')
-    f.write("\t\t\\override NoteHead.style = #'slash\n")
-    f.write("\t\t\\time 4/4\n")
-    f.write('\t\\omit Stem\n')
+    chords_string += '\t\t}\n'
+    chords_string += '\t}\n'
+    chords_string += '\t\\new RhythmicStaff {\n'
+    chords_string += "\t\t\\override NoteHead.style = #'slash\n"
+    chords_string += "\t\t\\time 4/4\n"
+    chords_string += '\t\\omit Stem\n'
     for i in range(n):
-        f.write('\t\t\t')
+        chords_string += '\t\t\t'
         for ii in range(m):
             for iii in range(4):
-                f.write('c4 ')
-            f.write(' | ')
-        f.write('\\break')
-        f.write('\n')
+                chords_string += 'c4 '
+            chords_string += ' | '
+        chords_string += '\\break'
+        chords_string += '\n'
 
-    f.write('\t}\n')
-    f.write('\t>>\n')
-    f.write('}')
+    chords_string += '\t}\n'
+    chords_string += '\t>>\n'
+    chords_string += '}'
 
-    f.close()
-    pass
+    return chords_string
 
 if __name__ == '__main__':
-    write_random_chords()
+    
+    f = open('random_chords.ly','w')
+    f.write(generate_random_chords())
+    f.close()
