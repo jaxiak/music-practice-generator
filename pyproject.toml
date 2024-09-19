@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "LocalUtils"
+version = "0.0.1"
+authors = [
+  { name="Joseph Axiak", email="jaxiak@win-waste.com" },
+]
+description = "A collection of utilities to help with various collections pricing projects"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+]
