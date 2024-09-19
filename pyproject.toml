@@ -3,18 +3,20 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "LocalUtils"
+name = "MusicPracticeGenerator"
 version = "0.0.1"
 authors = [
-  { name="Joseph Axiak", email="jaxiak@win-waste.com" },
+  { name="Joseph Axiak", email="jaxiak@gmail.com" },
 ]
-description = "A collection of utilities to help with various collections pricing projects"
+description = "Some tools to help us practice music."
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: GNU GPLv3",
     "Operating System :: OS Independent",
 ]
 dependencies = [
 ]
+[tool.setuptools]
+py-modules = []

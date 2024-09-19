@@ -1,4 +1,5 @@
 # import lilypad
+
 from .MusicPracticeGenerator  import write_random_chords
 
 import random
@@ -11,6 +12,8 @@ write_random_chords()
 test_reader = open('output/sample_rythms.ly')
 # test_output = 
 
+def test_rhythm_output():
+    assert True
 # assert test_output == example_output
 
 
