@@ -53,10 +53,13 @@ def check_measure(enc):
             return False
     return True
 
-def generate_sample_rhythms(n = 500):
+def generate_sample_rhythms(n:int = 500) -> str:
+    """Will generate a string for an .ly file.\n
+    n is the number of measure that will be in the file."""
     list_of_encodes = []
     rhythms_string = ''
     
+    rhythms_string += '\\header { \\tagline = ##f}\n'
     rhythms_string += "{\n"
     rhythms_string += "\t\\time 4/4\n"
     rhythms_string += "\t\\clef percussion\n"
@@ -78,10 +81,12 @@ def generate_sample_rhythms(n = 500):
         rhythms_string += "\n"
     
     rhythms_string += "}\n"
+    
     return rhythms_string
 
 if __name__ == '__main__':
+    import os
     sample_rhythms_string = generate_sample_rhythms()
-    f = open("sample_rythms.ly", 'w')
+    f = open(os.path.join(os.path.dirname(__file__), 'output/random_rhythms.ly'),'w')
     f.write(sample_rhythms_string)
     f.close()

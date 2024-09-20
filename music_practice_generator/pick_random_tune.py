@@ -6,8 +6,8 @@ def select_random_tune(df):
 
 if __name__ == '__main__':
     import pandas as pd
-    # df = pd.read_csv('input/tunes.csv')
-    df = pd.DataFrame(data = {'Title': ['Test Tune Name']})
+    import os
+    df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'input/tunes.csv'))
     Go = True
     while Go:
        print(select_random_tune(df))

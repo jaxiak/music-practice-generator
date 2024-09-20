@@ -16,7 +16,7 @@ classifiers = [
     "License :: GNU GPLv3",
     "Operating System :: OS Independent",
 ]
-dependencies = ["pandas"
+dependencies = ["pandas >= 2.2.2"
 ]
 [tool.setuptools]
 py-modules = ["music_practice_generator"]

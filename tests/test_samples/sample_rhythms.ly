@@ -1,3 +1,4 @@
+\header { \tagline = ##f}
 {
 	\time 4/4
 	\clef percussion

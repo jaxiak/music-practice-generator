@@ -4,4 +4,6 @@ local_paths.txt
 */__pycache__/
 *.pyc
 generate_test_sample.py
-.vscode/
+.vscode/*
+music_practice_generator/output/*
+music_practice_generator/input/*
