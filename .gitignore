@@ -5,5 +5,3 @@ local_paths.txt
 *.pyc
 generate_test_sample.py
 .vscode/*
-music_practice_generator/output/*
-music_practice_generator/input/*
