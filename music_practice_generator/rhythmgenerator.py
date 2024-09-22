@@ -1,6 +1,6 @@
 from random import shuffle
 
-def incremented(enc):
+def incremented(enc, simultaneous:bool = False):
     new_enc = ''
     g = True
     i = 0
@@ -21,11 +21,11 @@ def incremented(enc):
         i += 1
     return new_enc
 
-def decode_measure(enc):
+def decode_measure(enc, simultaneous:bool = False):
     measure = "\t"
     i = 0
     
-    encoding = {'r': 'r', 'b': 'g', 's': 'd\''}
+    encoding = {'r': 'r', 'b': 'bd', 's': 'sn'}
     while i < 8:
         #this_measure += str(i)
         measure += encoding[enc[i]]
@@ -45,7 +45,7 @@ def decode_measure(enc):
     measure += "\n"
     return measure
 
-def check_measure(enc):
+def check_measure(enc, simultaneous:bool = False):
     for i in range(8):
         if enc[i] == 'b' and enc[(i+1)%8] == 'b' and enc[(i + 2 ) % 8] == 'b':
             return False
@@ -53,16 +53,16 @@ def check_measure(enc):
             return False
     return True
 
-def generate_sample_rhythms(n:int = 500) -> str:
+def generate_sample_rhythms(n:int = 500, simultaneous:bool = False) -> str:
     """Will generate a string for an .ly file.\n
-    n is the number of measure that will be in the file."""
+    n is the number of measure that will be in the file.
+    simultaneous is whether two notes can happen at the same time."""
     list_of_encodes = []
     rhythms_string = ''
     
     rhythms_string += '\\header { \\tagline = ##f}\n'
-    rhythms_string += "{\n"
+    rhythms_string += "\\drums {\n"
     rhythms_string += "\t\\time 4/4\n"
-    rhythms_string += "\t\\clef percussion\n"
     
     checked = set()
     encoded_measure = 'rrrrrrrr'
@@ -70,14 +70,14 @@ def generate_sample_rhythms(n:int = 500) -> str:
         if encoded_measure in checked:
             break
         checked.add(encoded_measure)
-        if check_measure(encoded_measure):
+        if check_measure(encoded_measure, simultaneous = simultaneous):
             list_of_encodes.append(encoded_measure)
-        encoded_measure = incremented(encoded_measure)
+        encoded_measure = incremented(encoded_measure, simultaneous = simultaneous)
     shuffle(list_of_encodes)
 
     for i in range(min(n, len(list_of_encodes))):
         rhythms_string += "\t"
-        rhythms_string += decode_measure(list_of_encodes[i])
+        rhythms_string += decode_measure(list_of_encodes[i], simultaneous = simultaneous)
         rhythms_string += "\n"
     
     rhythms_string += "}\n"
