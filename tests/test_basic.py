@@ -10,8 +10,3 @@ def test_tune_selection():
     
 def test_chord_generater():
     assert isinstance(music_practice_generator.generate_random_chords(), str)
-
-if __name__ == '__main__':
-    test_rhythm_output()
-    test_tune_selection()
-    test_chord_generater()
